@@ -238,6 +238,8 @@
   footer .logo-txt .h{color:#fff}
   footer .fcol h4{color:var(--gold-light);font-size:14px;margin-bottom:14px;letter-spacing:.05em}
   footer .fcol p{font-size:13.5px;line-height:1.9}
+  footer .fcol a{color:var(--gold-light);text-decoration:none;border-bottom:1px solid rgba(201,162,75,.4);transition:.3s}
+  footer .fcol a:hover{color:#fff;border-color:#fff}
   footer .copy{width:100%;border-top:1px solid rgba(255,255,255,.08);margin-top:34px;padding-top:24px;font-size:12.5px;color:rgba(255,255,255,.38);text-align:center}
   .disclaimer{font-size:11.5px;color:rgba(255,255,255,.28);max-width:760px;margin:14px auto 0;text-align:center;line-height:1.7}
 
@@ -265,6 +267,16 @@
     .step p.nw{font-size:14px;letter-spacing:0}
     .req-card .cap.nw{font-size:15px}
     .form-shell{padding:34px 24px}
+    /* ===== 모바일 푸터 정리 ===== */
+    footer{padding:48px 0 30px}
+    footer .wrap{flex-direction:column;gap:0}
+    footer .fcol{width:100%;padding:20px 0;border-top:1px solid rgba(255,255,255,.08)}
+    footer .fcol:first-child{padding-top:0;border-top:none}
+    footer .fcol h4{margin-bottom:10px;font-size:15px}
+    footer .fcol p{font-size:14.5px;line-height:1.85}
+    footer .logo{justify-content:flex-start}
+    footer .logo-txt{align-items:flex-start}
+    footer .copy{margin-top:20px;padding-top:20px}
   }
 </style>
 </head>
@@ -504,7 +516,11 @@
     </div>
     <div class="fcol">
       <h4>문의</h4>
-      <p>모집 담당 · 헤리티지 금융 인재영입팀<br>상담 신청 · 상단 지원서 작성<br>운영시간 · 평일 09:00 ~ 18:00</p>
+      <p>모집 담당 · 헤리티지 금융 인재영입팀<br>상담 신청 · 상단 지원서 작성<br>운영시간 · 평일 09:00 ~ 18:00<br>홈페이지 · <a href="https://koinsnew.github.io/heritage" target="_blank" rel="noopener">koinsnew.github.io/heritage</a></p>
+    </div>
+    <div class="fcol">
+      <h4>오시는 길</h4>
+      <p>서울시 광진구 천호대로 676<br>율림빌딩 2층<br><span style="color:var(--gold-light)">아차산역(5호선) 3번 출구 앞</span></p>
     </div>
     <div class="copy">© 2026 HERITAGE FINANCE. All rights reserved.</div>
     <p class="disclaimer">본 페이지는 보험설계사 모집을 위한 안내 페이지입니다. 지원 시 안내되는 정착지원금·소득보장 등 제반 혜택은 회사 내부 기준 및 개인 성과·활동 조건에 따라 달라질 수 있으며, 구체적인 내용은 상담을 통해 안내됩니다.</p>
