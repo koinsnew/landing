@@ -40,10 +40,30 @@
     text-decoration:none;cursor:pointer;border:none;transition:.35s;letter-spacing:.02em;
   }
   .btn-gold{
+    position:relative;overflow:hidden;
     background:linear-gradient(120deg,var(--gold-deep),var(--gold),var(--gold-light));
-    color:#1a1408;box-shadow:0 12px 30px -10px rgba(201,162,75,.7);
+    color:#1a1408;font-weight:800;
+    box-shadow:0 12px 30px -10px rgba(201,162,75,.7),inset 0 1px 0 rgba(255,255,255,.5);
+    border:1px solid rgba(255,244,214,.55);
   }
-  .btn-gold:hover{transform:translateY(-3px);box-shadow:0 18px 40px -10px rgba(201,162,75,.85)}
+  .btn-gold:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 22px 48px -10px rgba(201,162,75,.95),inset 0 1px 0 rgba(255,255,255,.6)}
+  .btn-gold:active{transform:translateY(-1px) scale(.99)}
+  .btn-gold::after{content:"";position:absolute;top:0;left:-130%;width:55%;height:100%;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,.6),transparent);
+    transform:skewX(-22deg);animation:shine 3.4s ease-in-out infinite;pointer-events:none}
+  @keyframes shine{0%{left:-130%}45%{left:190%}100%{left:190%}}
+  .btn.pulse{animation:ctaPulse 1.9s ease-in-out infinite}
+  .btn.pulse:hover{animation:none}
+  @keyframes ctaPulse{
+    0%,100%{box-shadow:0 12px 30px -10px rgba(201,162,75,.7),inset 0 1px 0 rgba(255,255,255,.5)}
+    50%{box-shadow:0 16px 42px -6px rgba(201,162,75,1),0 0 0 6px rgba(201,162,75,.16),inset 0 1px 0 rgba(255,255,255,.5)}
+  }
+  .btn-gold .ico{display:inline-flex;transition:.3s}
+  .btn-gold:hover .ico{transform:translateX(4px)}
+  /* nowrap utility */
+  .nw{white-space:nowrap}
+  .step p.nw{font-size:12px;letter-spacing:-.02em}
+  .req-card .cap.nw{font-size:14px}
   .btn-ghost{border:1.5px solid var(--gold);color:var(--gold-light);background:transparent}
   .btn-ghost:hover{background:rgba(201,162,75,.12)}
   .eyebrow{
@@ -60,8 +80,8 @@
   .logo .mark{width:38px;height:44px}
   .logo-txt{display:flex;flex-direction:column;line-height:1}
   .logo-txt{align-items:center}
-  .logo-txt .h{font-weight:800;font-size:21px;letter-spacing:.22em;color:var(--ink)}
-  .logo-txt .f{font-size:21px;letter-spacing:.35em;color:var(--gold-deep);font-weight:600;margin-top:4px}
+  .logo-txt .h{font-weight:800;font-size:23px;letter-spacing:.14em;color:var(--ink);line-height:1}
+  .logo-txt .f{font-size:12px;letter-spacing:.44em;color:var(--gold-deep);font-weight:600;margin-top:4px;line-height:1;text-indent:.44em}
   header.nav .logo-txt .h{color:#fff}
 
   /* ===== HEADER ===== */
@@ -239,7 +259,11 @@
     .float-cta{display:block}
     body{padding-bottom:74px}
     .b-grid{grid-template-columns:1fr}
-    .steps{grid-template-columns:1fr 1fr}
+    .steps{grid-template-columns:1fr}
+    .req-grid{grid-template-columns:1fr}
+    .req-card{padding:30px 20px}
+    .step p.nw{font-size:14px;letter-spacing:0}
+    .req-card .cap.nw{font-size:15px}
     .form-shell{padding:34px 24px}
   }
 </style>
@@ -257,7 +281,7 @@
       <a href="#requirements">지원자격</a>
       <a href="#tiers">차등지원</a>
       <a href="#process">지원절차</a>
-      <a href="#apply" class="btn btn-gold">지금 지원하기</a>
+      <a href="#apply" class="btn btn-gold pulse">지금 지원하기 <span class="ico">→</span></a>
     </nav>
     <button class="menu-btn" onclick="document.getElementById('apply').scrollIntoView()">☰</button>
   </div>
@@ -268,7 +292,11 @@
   <svg class="hero-hex" viewBox="0 0 100 118" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M50 3 L93 28 V90 L50 115 L7 90 V28 Z" stroke="#c9a24b" stroke-width="1.2" fill="none"/>
     <path d="M50 13 L84 33 V85 L50 105 L16 85 V33 Z" stroke="#c9a24b" stroke-width="1" fill="none"/>
-    <path d="M35 38 V80 M65 38 V80 M35 59 H65" stroke="#c9a24b" stroke-width="3"/>
+    <g stroke="#c9a24b" fill="none" stroke-width="3.2" stroke-linecap="square">
+      <path d="M30 37 H46 M30 81 H46 M38 37 V81"/>
+      <path d="M54 37 H70 M54 81 H70 M62 37 V81"/>
+      <path d="M38 59 H62"/>
+    </g>
   </svg>
   <div class="wrap">
     <div class="reveal">
@@ -276,7 +304,7 @@
       <h1>2026 <span class="gold-text">보험설계사</span> 특별 모집<span class="line2 gold-text">헤리티지 금융과 함께</span></h1>
       <p class="lead">정착지원금 전폭 지원과 프리미엄 고객 DB 제공으로, 경험이 없어도 안정적인 시작부터 성공까지. 헤리티지 금융이 당신의 새로운 커리어를 끝까지 책임집니다.</p>
       <div class="hero-cta">
-        <a href="#apply" class="btn btn-gold">1분 만에 지원하기 →</a>
+        <a href="#apply" class="btn btn-gold pulse" style="font-size:18px;padding:18px 40px">1분 만에 지원하기 <span class="ico">→</span></a>
         <a href="#benefits" class="btn btn-ghost">모집 혜택 보기</a>
       </div>
       <div class="hero-stats">
@@ -342,7 +370,7 @@
       <p>학력, 경력, 나이, 성별에 관계없이 열정만 있다면 누구나 헤리티지 금융과 함께할 수 있습니다.</p>
     </div>
     <div class="req-grid">
-      <div class="req-card reveal"><div class="big gold-text">경력<br>무관</div><div class="cap">보험 경험이 전혀 없어도 처음부터 교육</div></div>
+      <div class="req-card reveal"><div class="big gold-text">경력<br>무관</div><div class="cap nw">보험 경험이 전혀 없어도 처음부터 교육</div></div>
       <div class="req-card reveal"><div class="big gold-text">성별<br>무관</div><div class="cap">남녀 구분 없이 동등한 기회 제공</div></div>
       <div class="req-card reveal"><div class="big gold-text">25~55<br>세</div><div class="cap">폭넓은 연령대 지원 가능</div></div>
       <div class="req-card reveal"><div class="big gold-text">학력<br>무관</div><div class="cap">학력 조건 없이 열정과 태도 중심</div></div>
@@ -396,9 +424,9 @@
       <p>지원서 접수부터 정식 활동까지, 헤리티지 금융이 함께합니다.</p>
     </div>
     <div class="steps">
-      <div class="step reveal"><div class="circ">01</div><h3>지원서 접수</h3><p>하단 신청서 작성 후 1분 만에 간편하게 지원 완료</p></div>
+      <div class="step reveal"><div class="circ">01</div><h3>지원서 접수</h3><p class="nw">하단 신청서 작성 후 1분 만에 간편하게 지원 완료</p></div>
       <div class="step reveal"><div class="circ">02</div><h3>상담 · 면접</h3><p>전문 담당자와 1:1 상담으로 커리어 방향 설계</p></div>
-      <div class="step reveal"><div class="circ">03</div><h3>교육 · 등록</h3><p>체계적인 교육 이수 및 설계사 자격 등록 지원</p></div>
+      <div class="step reveal"><div class="circ">03</div><h3>교육 · 등록</h3><p class="nw">체계적인 교육 이수 및 설계사 자격 등록 지원</p></div>
       <div class="step reveal"><div class="circ">04</div><h3>정식 활동 시작</h3><p>정착지원금과 함께 안정적인 활동 시작</p></div>
     </div>
   </div>
@@ -408,7 +436,11 @@
 <section class="section apply" id="apply">
   <svg class="hero-hex" viewBox="0 0 100 118" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M50 3 L93 28 V90 L50 115 L7 90 V28 Z" stroke="#c9a24b" stroke-width="1.2" fill="none"/>
-    <path d="M35 38 V80 M65 38 V80 M35 59 H65" stroke="#c9a24b" stroke-width="3"/>
+    <g stroke="#c9a24b" fill="none" stroke-width="3.2" stroke-linecap="square">
+      <path d="M30 37 H46 M30 81 H46 M38 37 V81"/>
+      <path d="M54 37 H70 M54 81 H70 M62 37 V81"/>
+      <path d="M38 59 H62"/>
+    </g>
   </svg>
   <div class="wrap">
     <div class="sec-head reveal dark-head" style="margin-bottom:12px">
@@ -468,7 +500,7 @@
   </div>
 </footer>
 
-<div class="float-cta"><a href="#apply" class="btn btn-gold">지금 지원하기 →</a></div>
+<div class="float-cta"><a href="#apply" class="btn btn-gold pulse">지금 지원하기 <span class="ico">→</span></a></div>
 <div class="toast" id="toast">✓ 지원이 접수되었습니다. 곧 연락드리겠습니다!</div>
 
 <script>
