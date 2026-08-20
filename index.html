@@ -226,11 +226,12 @@
   .form-shell .btn-gold{width:100%;justify-content:center;font-size:17px;padding:18px}
   .form-note{text-align:center;font-size:13px;color:rgba(255,255,255,.45);margin-top:18px}
   .toast{
-    position:fixed;left:50%;bottom:40px;transform:translateX(-50%) translateY(120px);
+    position:fixed;left:50%;bottom:96px;transform:translateX(-50%) translateY(40px);
     background:linear-gradient(120deg,var(--gold-deep),var(--gold));color:#1a1408;font-weight:700;
-    padding:16px 30px;border-radius:50px;box-shadow:var(--shadow);transition:.5s;z-index:200;
+    padding:16px 30px;border-radius:50px;box-shadow:var(--shadow);transition:.4s;z-index:200;
+    opacity:0;visibility:hidden;pointer-events:none;max-width:90vw;text-align:center;
   }
-  .toast.show{transform:translateX(-50%) translateY(0)}
+  .toast.show{transform:translateX(-50%) translateY(0);opacity:1;visibility:visible}
 
   /* ===== FOOTER ===== */
   footer{background:#070708;color:rgba(255,255,255,.55);padding:60px 0 34px;border-top:1px solid rgba(201,162,75,.15)}
@@ -253,11 +254,38 @@
     .hero-stats{grid-template-columns:repeat(3,1fr);gap:14px}
   }
   @media(max-width:680px){
-    .section{padding:80px 0}
+    .section{padding:74px 0}
+    /* ===== 햄버거 드롭다운 메뉴 ===== */
     .nav-links{display:none}
-    .menu-btn{display:block}
-    .hero-stats{grid-template-columns:1fr 1fr}
+    .menu-btn{display:block;z-index:130}
+    header.nav.open{background:rgba(12,12,14,.98);backdrop-filter:blur(14px)}
+    header.nav.open .nav-links{
+      display:flex;flex-direction:column;align-items:stretch;
+      position:absolute;top:100%;left:0;right:0;
+      background:rgba(12,12,14,.98);backdrop-filter:blur(14px);
+      padding:14px 24px 20px;gap:6px;border-top:1px solid var(--line);
+      box-shadow:0 24px 34px -18px #000;
+    }
+    header.nav.open .nav-links a{font-size:16px;padding:12px 4px;color:#fff}
+    header.nav.open .nav-links .btn{margin-top:8px;width:100%;justify-content:center;padding:14px}
+
+    /* ===== 히어로 ===== */
+    .hero{min-height:auto;padding:116px 0 56px}
+    .hero h1{font-size:26px;line-height:1.22;white-space:nowrap;letter-spacing:-.01em}
+    .hero h1 .line2{font-size:26px;margin-top:4px}
+    .hero p.lead{font-size:15.5px;margin:20px 0 32px}
+    .hero-stats{grid-template-columns:1fr 1fr;gap:16px 14px;margin-top:40px}
     .hero-stats .st:last-child{grid-column:span 2}
+    .hero-stats .num{font-size:30px}
+    .hero-stats .lab{font-size:13px}
+
+    /* ===== 섹션 제목/문구 한 줄 처리 ===== */
+    .sec-head{margin-bottom:44px}
+    .sec-head h2{font-size:23px}
+    .sec-head p{font-size:15px}
+    #benefits .sec-head h2{white-space:nowrap;font-size:18px}
+    #apply .sec-head h2{white-space:nowrap;font-size:20px}
+
     .float-cta{display:block}
     body{padding-bottom:74px}
     .b-grid{grid-template-columns:1fr}
@@ -266,19 +294,30 @@
     .req-card{padding:30px 20px}
     .step p.nw{font-size:14px;letter-spacing:0}
     .req-card .cap.nw{font-size:15px}
+
+    /* ===== 차등지원 카드 항목 한 줄 ===== */
+    .tier{padding:30px 20px}
+    .tier li{white-space:nowrap;font-size:12.5px;gap:9px}
+    .tier li .ck{flex:0 0 20px;width:20px;height:20px;font-size:11px}
+    .tier .sub{white-space:normal;font-size:14px}
+
     .form-shell{padding:34px 24px}
+    .form-note{white-space:nowrap;font-size:11.5px}
+
     /* ===== 모바일 푸터 정리 (2열 그리드) ===== */
     footer{padding:48px 0 30px}
-    footer .wrap{display:grid;grid-template-columns:1fr 1fr;gap:26px 18px}
+    footer .wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px 16px}
     footer .fcol{width:auto;padding:0;border-top:none}
-    footer .fcol h4{margin-bottom:10px;font-size:14px}
-    footer .fcol p{font-size:13px;line-height:1.8}
+    footer .fcol h4{margin-bottom:9px;font-size:13.5px}
+    footer .fcol p{font-size:11.5px;line-height:1.85}
     footer .fcol p[style]{max-width:none}
-    footer .logo{justify-content:flex-start;margin-bottom:12px!important}
+    footer .fcol .tagline{font-size:10.5px;white-space:nowrap}
+    footer .logo{justify-content:flex-start;margin-bottom:10px!important}
     footer .logo-txt{align-items:flex-start}
-    footer .logo-txt .h{font-size:20px}
-    footer .copy{grid-column:1 / -1;margin-top:8px;padding-top:20px}
-    .disclaimer{grid-column:1 / -1}
+    footer .logo-txt .h{font-size:18px}
+    footer .logo-txt .f{font-size:11px}
+    footer .copy{grid-column:1 / -1;margin-top:8px;padding-top:18px;font-size:11.5px}
+    .disclaimer{grid-column:1 / -1;font-size:10.5px}
   }
 </style>
 </head>
@@ -297,7 +336,7 @@
       <a href="#process">지원절차</a>
       <a href="#apply" class="btn btn-gold pulse">지금 지원하기 <span class="ico">→</span></a>
     </nav>
-    <button class="menu-btn" onclick="document.getElementById('apply').scrollIntoView()">☰</button>
+    <button class="menu-btn" id="menuBtn" aria-label="메뉴 열기" onclick="toggleMenu()">☰</button>
   </div>
 </header>
 
@@ -341,7 +380,7 @@
     <div class="sec-head reveal">
       <span class="eyebrow">Key Benefits</span>
       <h2>헤리티지 금융만의 <span class="gold-text">차별화된 지원 혜택</span></h2>
-      <p>설계사로서의 첫 걸음부터 최고의 자산관리 전문가로 성장하기까지, 모든 단계를 뒷받침합니다.</p>
+      <p>설계사로서의 첫 걸음부터 최고의 자산관리 전문가로 성장하기까지, <span class="nw">모든 단계를 뒷받침합니다.</span></p>
     </div>
     <div class="b-grid">
       <div class="b-card reveal">
@@ -403,7 +442,7 @@
     <div class="sec-head reveal">
       <span class="eyebrow">Special Support</span>
       <h2>신입 · 경력 <span class="gold-text">맞춤 차등 지원</span></h2>
-      <p>당신의 상황에 딱 맞는 지원 프로그램으로 더 빠르고 안정적인 정착을 돕습니다.</p>
+      <p><span class="nw">당신의 상황에 딱 맞는 지원 프로그램으로</span> <span class="nw">더 빠르고 안정적인 정착을 돕습니다.</span></p>
     </div>
     <div class="tier-grid">
       <div class="tier reveal">
@@ -440,7 +479,7 @@
     <div class="sec-head reveal">
       <span class="eyebrow">Process</span>
       <h2>간단한 <span class="gold-text">4단계 지원 절차</span></h2>
-      <p>지원서 접수부터 정식 활동까지, 헤리티지 금융이 함께합니다.</p>
+      <p><span class="nw">지원서 접수부터 정식 활동까지,</span> <span class="nw">헤리티지 금융이 함께합니다.</span></p>
     </div>
     <div class="steps">
       <div class="step reveal"><div class="circ">01</div><h3>지원서 접수</h3><p class="nw">하단 신청서 작성 후 1분 만에 간편하게 지원 완료</p></div>
@@ -510,19 +549,19 @@
       <a href="#top" class="logo" style="margin-bottom:16px">
         <span class="logo-txt"><span class="h">HERITAGE</span><span class="f">FINANCE</span></span>
       </a>
-      <p style="max-width:300px">신뢰를 자산으로, 사람을 중심으로.<br>헤리티지 금융과 함께 당신의 커리어를 설계하세요.</p>
+      <p style="max-width:300px"><span class="tagline">신뢰를 자산으로, 사람을 중심으로.</span><br>헤리티지 금융과 함께 당신의 커리어를 설계하세요.</p>
     </div>
     <div class="fcol">
       <h4>모집 안내</h4>
-      <p>모집부문 · 보험설계사<br>지원자격 · 만 25~55세 (경력·학력 무관)<br>근무형태 · 위촉직 / 자유근무</p>
+      <p>모집부문 · 보험설계사<br>지원자격 · 만 25~55세 (경력·학력 무관)<br><span class="nw">근무형태 · 위촉직 / 자유근무</span></p>
     </div>
     <div class="fcol">
       <h4>문의</h4>
-      <p>모집 담당 · 헤리티지 금융 인재영입팀<br>상담 신청 · 상단 지원서 작성<br>운영시간 · 평일 09:00 ~ 18:00<br>홈페이지 · <a href="https://koinsnew.github.io/heritage" target="_blank" rel="noopener">koinsnew.github.io/heritage</a></p>
+      <p>모집 담당 · 헤리티지 금융 인재영입팀<br>상담 신청 · 상단 지원서 작성<br><span class="nw">운영시간 · 평일 09:00 ~ 18:00</span><br>홈페이지 · <a href="https://koinsnew.github.io/heritage" target="_blank" rel="noopener">koinsnew.github.io/heritage</a></p>
     </div>
     <div class="fcol">
       <h4>오시는 길</h4>
-      <p>서울시 광진구 천호대로 676<br>율림빌딩 2층<br><span style="color:var(--gold-light)">아차산역(5호선) 3번 출구 앞</span></p>
+      <p><span class="nw">서울시 광진구 천호대로 676</span><br>율림빌딩 2층<br><span class="nw" style="color:var(--gold-light)">아차산역(5호선) 3번 출구 앞</span></p>
     </div>
     <div class="copy">© 2026 HERITAGE FINANCE. All rights reserved.</div>
     <p class="disclaimer">본 페이지는 보험설계사 모집을 위한 안내 페이지입니다. 지원 시 안내되는 정착지원금·소득보장 등 제반 혜택은 회사 내부 기준 및 개인 성과·활동 조건에 따라 달라질 수 있으며, 구체적인 내용은 상담을 통해 안내됩니다.</p>
@@ -536,6 +575,20 @@
   // Header solid on scroll
   const nav=document.getElementById('nav');
   window.addEventListener('scroll',()=>{nav.classList.toggle('solid',window.scrollY>60)});
+  // ===== 모바일 햄버거 메뉴 =====
+  function toggleMenu(){
+    const open = nav.classList.toggle('open');
+    const btn = document.getElementById('menuBtn');
+    btn.textContent = open ? '✕' : '☰';
+    btn.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+  }
+  function closeMenu(){
+    nav.classList.remove('open');
+    const btn = document.getElementById('menuBtn');
+    btn.textContent = '☰';
+  }
+  // 메뉴 안의 링크를 누르면 자동으로 닫힘
+  document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click', closeMenu));
   // Reveal on scroll
   const io=new IntersectionObserver((es)=>{es.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*70);io.unobserve(e.target)}})},{threshold:.14});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
