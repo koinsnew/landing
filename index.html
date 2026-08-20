@@ -267,16 +267,18 @@
     .step p.nw{font-size:14px;letter-spacing:0}
     .req-card .cap.nw{font-size:15px}
     .form-shell{padding:34px 24px}
-    /* ===== 모바일 푸터 정리 ===== */
+    /* ===== 모바일 푸터 정리 (2열 그리드) ===== */
     footer{padding:48px 0 30px}
-    footer .wrap{flex-direction:column;gap:0}
-    footer .fcol{width:100%;padding:20px 0;border-top:1px solid rgba(255,255,255,.08)}
-    footer .fcol:first-child{padding-top:0;border-top:none}
-    footer .fcol h4{margin-bottom:10px;font-size:15px}
-    footer .fcol p{font-size:14.5px;line-height:1.85}
-    footer .logo{justify-content:flex-start}
+    footer .wrap{display:grid;grid-template-columns:1fr 1fr;gap:26px 18px}
+    footer .fcol{width:auto;padding:0;border-top:none}
+    footer .fcol h4{margin-bottom:10px;font-size:14px}
+    footer .fcol p{font-size:13px;line-height:1.8}
+    footer .fcol p[style]{max-width:none}
+    footer .logo{justify-content:flex-start;margin-bottom:12px!important}
     footer .logo-txt{align-items:flex-start}
-    footer .copy{margin-top:20px;padding-top:20px}
+    footer .logo-txt .h{font-size:20px}
+    footer .copy{grid-column:1 / -1;margin-top:8px;padding-top:20px}
+    .disclaimer{grid-column:1 / -1}
   }
 </style>
 </head>
@@ -442,7 +444,7 @@
     </div>
     <div class="steps">
       <div class="step reveal"><div class="circ">01</div><h3>지원서 접수</h3><p class="nw">하단 신청서 작성 후 1분 만에 간편하게 지원 완료</p></div>
-      <div class="step reveal"><div class="circ">02</div><h3>상담 · 면접</h3><p>전문 담당자와 1:1 상담으로 커리어 방향 설계</p></div>
+      <div class="step reveal"><div class="circ">02</div><h3>상담 · 면접</h3><p class="nw">전문 담당자와 1:1 상담으로 커리어 방향 설계</p></div>
       <div class="step reveal"><div class="circ">03</div><h3>교육 · 등록</h3><p class="nw">체계적인 교육 이수 및 설계사 자격 등록 지원</p></div>
       <div class="step reveal"><div class="circ">04</div><h3>정식 활동 시작</h3><p>정착지원금과 함께 안정적인 활동 시작</p></div>
     </div>
