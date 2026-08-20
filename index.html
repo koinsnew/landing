@@ -81,7 +81,7 @@
   .logo-txt{display:flex;flex-direction:column;line-height:1}
   .logo-txt{align-items:center}
   .logo-txt .h{font-weight:800;font-size:23px;letter-spacing:.14em;color:var(--ink);line-height:1}
-  .logo-txt .f{font-size:12px;letter-spacing:.44em;color:var(--gold-deep);font-weight:600;margin-top:4px;line-height:1;text-indent:.44em}
+  .logo-txt .f{font-size:15px;letter-spacing:.34em;color:var(--gold-deep);font-weight:600;margin-top:5px;line-height:1;text-indent:.34em}
   header.nav .logo-txt .h{color:#fff}
 
   /* ===== HEADER ===== */
@@ -292,10 +292,15 @@
   <svg class="hero-hex" viewBox="0 0 100 118" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M50 3 L93 28 V90 L50 115 L7 90 V28 Z" stroke="#c9a24b" stroke-width="1.2" fill="none"/>
     <path d="M50 13 L84 33 V85 L50 105 L16 85 V33 Z" stroke="#c9a24b" stroke-width="1" fill="none"/>
-    <g stroke="#c9a24b" fill="none" stroke-width="3.2" stroke-linecap="square">
-      <path d="M30 37 H46 M30 81 H46 M38 37 V81"/>
-      <path d="M54 37 H70 M54 81 H70 M62 37 V81"/>
-      <path d="M38 59 H62"/>
+    <g stroke="#c9a24b" fill="none" stroke-width="2.2" stroke-linecap="butt">
+      <!-- 왼쪽 기둥 (이중 라인 + 세리프) -->
+      <path d="M30 36 V82 M40 36 V82"/>
+      <path d="M25 36 H45 M25 82 H45"/>
+      <!-- 오른쪽 기둥 (이중 라인 + 세리프) -->
+      <path d="M60 36 V82 M70 36 V82"/>
+      <path d="M55 36 H75 M55 82 H75"/>
+      <!-- 가로 크로스바 (이중 라인) -->
+      <path d="M40 56 H60 M40 62 H60"/>
     </g>
   </svg>
   <div class="wrap">
@@ -436,10 +441,16 @@
 <section class="section apply" id="apply">
   <svg class="hero-hex" viewBox="0 0 100 118" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M50 3 L93 28 V90 L50 115 L7 90 V28 Z" stroke="#c9a24b" stroke-width="1.2" fill="none"/>
-    <g stroke="#c9a24b" fill="none" stroke-width="3.2" stroke-linecap="square">
-      <path d="M30 37 H46 M30 81 H46 M38 37 V81"/>
-      <path d="M54 37 H70 M54 81 H70 M62 37 V81"/>
-      <path d="M38 59 H62"/>
+    <path d="M50 13 L84 33 V85 L50 105 L16 85 V33 Z" stroke="#c9a24b" stroke-width="1" fill="none"/>
+    <g stroke="#c9a24b" fill="none" stroke-width="2.2" stroke-linecap="butt">
+      <!-- 왼쪽 기둥 (이중 라인 + 세리프) -->
+      <path d="M30 36 V82 M40 36 V82"/>
+      <path d="M25 36 H45 M25 82 H45"/>
+      <!-- 오른쪽 기둥 (이중 라인 + 세리프) -->
+      <path d="M60 36 V82 M70 36 V82"/>
+      <path d="M55 36 H75 M55 82 H75"/>
+      <!-- 가로 크로스바 (이중 라인) -->
+      <path d="M40 56 H60 M40 62 H60"/>
     </g>
   </svg>
   <div class="wrap">
