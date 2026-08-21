@@ -303,6 +303,9 @@
 
     .form-shell{padding:34px 24px}
     .form-note{white-space:nowrap;font-size:11.5px}
+    /* 접수 완료 토스트: 모바일에서 2줄로 표시 */
+    .toast{padding:14px 26px;font-size:14.5px}
+    .toast .nw{display:block;line-height:1.5}
 
     /* ===== 모바일 푸터 정리 (2열 그리드) ===== */
     footer{padding:48px 0 30px}
@@ -367,7 +370,7 @@
       </div>
       <div class="hero-stats">
         <div class="st"><div class="num gold-text">380<span style="font-size:.5em">만원+</span></div><div class="lab">월 평균 소득</div></div>
-        <div class="st"><div class="num gold-text">25~55<span style="font-size:.5em">세</span></div><div class="lab">지원 가능 연령</div></div>
+        <div class="st"><div class="num gold-text">25~65<span style="font-size:.5em">세</span></div><div class="lab">지원 가능 연령</div></div>
         <div class="st"><div class="num gold-text">100<span style="font-size:.5em">%</span></div><div class="lab">정착 지원율</div></div>
       </div>
     </div>
@@ -430,7 +433,7 @@
     <div class="req-grid">
       <div class="req-card reveal"><div class="big gold-text">경력<br>무관</div><div class="cap nw">보험 경험이 전혀 없어도 처음부터 교육</div></div>
       <div class="req-card reveal"><div class="big gold-text">성별<br>무관</div><div class="cap">남녀 구분 없이 동등한 기회 제공</div></div>
-      <div class="req-card reveal"><div class="big gold-text">25~55<br>세</div><div class="cap">폭넓은 연령대 지원 가능</div></div>
+      <div class="req-card reveal"><div class="big gold-text">25~65<br>세</div><div class="cap">폭넓은 연령대 지원 가능</div></div>
       <div class="req-card reveal"><div class="big gold-text">학력<br>무관</div><div class="cap">학력 조건 없이 열정과 태도 중심</div></div>
     </div>
   </div>
@@ -553,7 +556,7 @@
     </div>
     <div class="fcol">
       <h4>모집 안내</h4>
-      <p>모집부문 · 보험설계사<br>지원자격 · 만 25~55세 (경력·학력 무관)<br><span class="nw">근무형태 · 위촉직 / 자유근무</span></p>
+      <p>모집부문 · 보험설계사<br>지원자격 · 만 25~65세 (경력·학력 무관)<br><span class="nw">근무형태 · 위촉직 / 자유근무</span></p>
     </div>
     <div class="fcol">
       <h4>문의</h4>
@@ -569,7 +572,7 @@
 </footer>
 
 <div class="float-cta"><a href="#apply" class="btn btn-gold pulse">지금 지원하기 <span class="ico">→</span></a></div>
-<div class="toast" id="toast">✓ 지원이 접수되었습니다. 곧 연락드리겠습니다!</div>
+<div class="toast" id="toast"><span class="nw">✓ 지원 접수완료.</span> <span class="nw">곧 연락드리겠습니다!</span></div>
 
 <script>
   // Header solid on scroll
@@ -651,7 +654,7 @@
       body: JSON.stringify(data)
     })
     .then(() => {
-      showToast('✓ 지원이 접수되었습니다. 곧 연락드리겠습니다!');
+      showToast('<span class="nw">✓ 지원 접수완료.</span> <span class="nw">곧 연락드리겠습니다!</span>');
       form.reset();
     })
     .catch(() => {
@@ -666,7 +669,7 @@
 
   function showToast(msg){
     const t = document.getElementById('toast');
-    t.textContent = msg;
+    t.innerHTML = msg;
     t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 4200);
   }
