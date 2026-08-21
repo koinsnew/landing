@@ -595,6 +595,22 @@
   // Phone formatting
   const ph=document.getElementById('phone');
   ph.addEventListener('input',()=>{let v=ph.value.replace(/\D/g,'').slice(0,11);if(v.length>7)v=v.replace(/(\d{3})(\d{4})(\d{1,4})/,'$1-$2-$3');else if(v.length>3)v=v.replace(/(\d{3})(\d{1,4})/,'$1-$2');ph.value=v});
+  // ===== 유입경로 추적 (누구의 광고로 들어왔는지 식별) =====
+  // 각 담당자는 광고 링크 뒤에 ?ref=본인코드 를 붙여서 사용 (예: .../heritage/?ref=A01)
+  const TRACK = (function(){
+    const q = new URLSearchParams(location.search);
+    const keys = ['ref','utm_source','utm_medium','utm_campaign','utm_content','fbclid'];
+    let t = {}, hasNew = false;
+    keys.forEach(k => { const v = q.get(k) || ''; if(v) hasNew = true; t[k] = v; });
+    // 페이지를 새로고침/재방문해도 최초 유입값이 유지되도록 저장
+    try{
+      if(hasNew){ sessionStorage.setItem('hf_track', JSON.stringify(t)); }
+      else { const s = sessionStorage.getItem('hf_track'); if(s){ t = JSON.parse(s); } }
+    }catch(e){}
+    t.landing = location.href;
+    return t;
+  })();
+
   // ===== 구글 앱스크립트 웹앱 URL (배포 후 아래 주소를 교체하세요) =====
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzXB4OIc2TcMX3yDx3PJIIGep350VicNF7uCdxl-ryKYBGPCNc58y0bBcUCAdOcuytzZw/exec';
 
@@ -607,7 +623,14 @@
       name:   form.name.value.trim(),
       phone:  form.phone.value.trim(),
       exp:    form.exp.value,
-      region: form.region.value.trim()
+      region: form.region.value.trim(),
+      ref:          TRACK.ref,
+      utm_source:   TRACK.utm_source,
+      utm_medium:   TRACK.utm_medium,
+      utm_campaign: TRACK.utm_campaign,
+      utm_content:  TRACK.utm_content,
+      fbclid:       TRACK.fbclid,
+      landing:      TRACK.landing
     };
 
     // URL 미설정 시: 데모 모드(화면 안내만)
